@@ -1,0 +1,54 @@
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+LogLevel QUIET
+
+Host gw.dev
+    Port            10022
+    HostName        localhost
+    User            hoge
+    ForwardAgent    yes
+    IdentityFile    keys/hoge
+
+Host dev-*
+    User            hoge
+    ProxyCommand    ssh -F ssh_config -CW %h:%p gw.dev
+
+Match User root OriginalHost dev-zone1-*
+    IdentityFile    keys/root/dev-zone1
+
+Match User root OriginalHost dev-zone2-*
+    IdentityFile    keys/root/dev-zone2
+
+Match User root OriginalHost dev-zone3-*
+    IdentityFile    keys/root/dev-zone3
+
+###-----------------------------------------------
+Host dev-zone1-node1
+    HostName        dev_zone1-node_1
+
+Host dev-zone1-node2
+    HostName        dev_zone1-node_2
+
+Host dev-zone1-node3
+    HostName        dev_zone1-node_3
+
+###-----------------------------------------------
+Host dev-zone2-node1
+    HostName        dev_zone2-node_1
+
+Host dev-zone2-node2
+    HostName        dev_zone2-node_2
+
+Host dev-zone2-node3
+    HostName        dev_zone2-node_3
+
+###-----------------------------------------------
+Host dev-zone3-node1
+    HostName        dev_zone3-node_1
+
+Host dev-zone3-node2
+    HostName        dev_zone3-node_2
+
+Host dev-zone3-node3
+    HostName        dev_zone3-node_3
+

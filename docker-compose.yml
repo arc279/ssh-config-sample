@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  gw:
+    build: ./
+    image: myssh
+    volumes:
+      - ./keys/hoge.pub:/home/hoge/.ssh/authorized_keys
+    tty: true
+    command:
+      /sbin/init
+    privileged: true
+    ports:
+      - "10022:22"
+
+  zone1-node:
+    build: ./
+    image: myssh
+    volumes:
+      - ./keys/hoge.pub:/home/hoge/.ssh/authorized_keys
+      - ./keys/root/dev-zone1.pub:/root/.ssh/authorized_keys
+    tty: true
+    command:
+      /sbin/init
+    privileged: true
+
+  zone2-node:
+    build: ./
+    image: myssh
+    volumes:
+      - ./keys/hoge.pub:/home/hoge/.ssh/authorized_keys
+      - ./keys/root/dev-zone2.pub:/root/.ssh/authorized_keys
+    tty: true
+    command:
+      /sbin/init
+    privileged: true
+
+  zone3-node:
+    build: ./
+    image: myssh
+    volumes:
+      - ./keys/hoge.pub:/home/hoge/.ssh/authorized_keys
+      - ./keys/root/dev-zone3.pub:/root/.ssh/authorized_keys
+    tty: true
+    command:
+      /sbin/init
+    privileged: true
