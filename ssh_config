@@ -6,11 +6,11 @@ Host gw.dev
     Port            10022
     HostName        localhost
     User            hoge
-    ForwardAgent    yes
     IdentityFile    keys/hoge
 
 Host dev-*
     User            hoge
+    IdentityFile    keys/hoge
     ProxyCommand    ssh -F ssh_config -CW %h:%p gw.dev
 
 Match User root OriginalHost dev-zone1-*
